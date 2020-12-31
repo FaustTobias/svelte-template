@@ -22,6 +22,11 @@ jobs:
       - run: node scripts/setupTypeScript.js
       - run: yarn set version berry
       - run: yarn
+
+      - run: |
+          yarn add -D svelte-language-server
+          yarn dlx @yarnpkg/pnpify --sdk vscode
+
       - run: |
           cat >>.gitignore <<EOL
 
