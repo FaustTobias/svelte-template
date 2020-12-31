@@ -43,4 +43,4 @@ jobs:
           git config --global user.name "github-actions"
           git add .
           git commit -m "[automated] Update template"
-          git push origin HEAD
+          git push origin HEAD --force
