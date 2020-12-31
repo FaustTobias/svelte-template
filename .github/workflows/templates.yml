@@ -17,6 +17,7 @@ jobs:
           node-version: '12'
 
       - run: git switch --orphan typescript
+      - run: ls lah
 
       - run: npx degit sveltejs/template
       - run: node scripts/setupTypeScript.js
