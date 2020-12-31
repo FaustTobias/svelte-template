@@ -24,6 +24,7 @@ npx degit FaustTobias/svelte-template#<template-name>
 | Name | Description |
 |-|-|
 | typescript | Preconfigured yarn 2 project with TypeScript integration. |
+| javascript | Preconfigured yarn 2 project without preprocessor integrations. |
 
 ## Maintainers
 
