@@ -15,3 +15,26 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
+
+      - run: git switch --orphan typescript
+
+      - run: npx degit sveltejs/template
+      - run: node scripts/setupTypeScript.js
+      - run: yarn set version berry
+      - run: yarn
+      - run: |
+          echo << EOF
+          .yarn/*
+          !.yarn/cache
+          !.yarn/releases
+          !.yarn/plugins
+          !.yarn/sdks
+          !.yarn/versions
+
+          EOF >> .gitignore
+
+      - run:
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions@users.noreply.github.com"
+          git commit -m "[automated] Update template"
+          git push
