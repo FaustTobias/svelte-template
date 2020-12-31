@@ -23,19 +23,20 @@ jobs:
       - run: yarn set version berry
       - run: yarn
       - run: |
-          echo << EOF
+          cat >>.gitignore <<EOL
+
           .yarn/*
           !.yarn/cache
           !.yarn/releases
           !.yarn/plugins
           !.yarn/sdks
           !.yarn/versions
+          EOL
 
-          EOF >> .gitignore
       - run: |
-          echo << EOF
+          cat >>.gitattributes <<EOL
           /.yarn/** linguist-vendored
-          EOF >> .gitattributes
+          EOL
 
       - run: |
           git config --global user.email "github-actions@users.noreply.github.com"
