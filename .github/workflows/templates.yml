@@ -122,7 +122,7 @@ jobs:
       - run: yarn
 
       - run: yarn add -D @rollup/plugin-alias
-      - run: node /var/svelte-template/scripts/sapper-yarn2-fix.js
+      - run: node /var/svelte-template/scripts/fix-sapper-pnp.js
 
       - run: |
           yarn add -D svelte-language-server
