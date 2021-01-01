@@ -9,7 +9,7 @@ Automatically maintained svelte templates.
 
 ## Introduction
 
-This repository contains several svelte templates that are automatically maintained.
+This repository contains several svelte templates that are automatically maintained. They are based on the [official rollup template](https://github.com/sveltejs/template).
 
 ## Usage
 
