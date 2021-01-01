@@ -110,12 +110,17 @@ jobs:
         with:
           node-version: '14'
 
+      - run: cp -r scripts /var/svelte-template/scripts
+
       - run: git switch --orphan sapper-typescript
 
       - run: npx degit sveltejs/sapper-template#rollup --force
       - run: node scripts/setupTypeScript.js
       - run: yarn set version berry
       - run: yarn
+
+      - run: yarn add -D @rollup/plugin-alias
+      - run: node /var/svelte-template/scripts/sapper-yarn2-fix.js
 
       - run: |
           yarn add -D svelte-language-server
