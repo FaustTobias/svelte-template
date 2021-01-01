@@ -150,3 +150,56 @@ jobs:
           git add .
           git commit -m "[automated] Update template"
           git push origin HEAD --force
+
+  template-sapper-javascript:
+    name: "Template: sapper-javascript"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - run: |
+          sudo mkdir -p /var/svelte-template/scripts
+          sudo cp -r scripts /var/svelte-template
+
+      - run: git switch --orphan sapper-javascript
+
+      - run: npx degit sveltejs/sapper-template#rollup --force
+      - run: rm scripts/setupTypeScript.js
+      - run: yarn set version berry
+      - run: yarn
+
+      - run: yarn add -D @rollup/plugin-alias
+      - run: node /var/svelte-template/scripts/fix-sapper-pnp.js
+
+      - run: |
+          yarn add -D svelte-language-server
+          yarn dlx @yarnpkg/pnpify --sdk vscode
+
+      - run: |
+          cat >>.gitignore <<EOL
+
+          .yarn/*
+          !.yarn/cache
+          !.yarn/releases
+          !.yarn/plugins
+          !.yarn/sdks
+          !.yarn/versions
+          EOL
+
+      - run: |
+          cat >>.gitattributes <<EOL
+          /.yarn/** linguist-vendored
+          EOL
+
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
