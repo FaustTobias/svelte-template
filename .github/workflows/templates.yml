@@ -111,8 +111,8 @@ jobs:
           node-version: '14'
 
       - run: |
-          mkdir -p /var/svelte-template/scripts
-          cp -r scripts /var/svelte-template/scripts
+          sudo mkdir -p /var/svelte-template/scripts
+          sudo cp -r scripts /var/svelte-template/scripts
 
       - run: git switch --orphan sapper-typescript
 
