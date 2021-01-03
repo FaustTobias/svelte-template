@@ -28,6 +28,7 @@ jobs:
       - run: |
           yarn add -D svelte-language-server
           yarn dlx @yarnpkg/pnpify --sdk vscode
+          yarn plugin import typescript
 
       - run: |
           cat >>.gitignore <<EOL
@@ -127,6 +128,7 @@ jobs:
       - run: |
           yarn add -D svelte-language-server
           yarn dlx @yarnpkg/pnpify --sdk vscode
+          yarn plugin import typescript
 
       - run: |
           cat >>.gitignore <<EOL
