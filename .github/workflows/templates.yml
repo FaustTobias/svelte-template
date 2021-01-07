@@ -223,6 +223,11 @@ jobs:
           sudo mkdir -p /var/svelte-template/scripts
           sudo cp -r scripts /var/svelte-template
 
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          ref: sapper-typescript
+
       - run: git switch origin/sapper-typescript
       - run: git switch --orphan typescript-tailwind
 
