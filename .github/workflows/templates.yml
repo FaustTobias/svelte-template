@@ -231,7 +231,7 @@ jobs:
       - run: git switch --force-create typescript-tailwind
 
       - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting
-      - run: node scripts/setup-tailwind
+      - run: node /var/svelte-template/scripts/setup-tailwind
 
       - run: |
           git config --global user.email "github-actions@users.noreply.github.com"
