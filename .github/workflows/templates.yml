@@ -46,12 +46,7 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: |
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git config --global user.name "github-actions"
-          git add .
-          git commit -m "[automated] Update template"
-          git push origin HEAD --force
+      - run: .github/scripts/push-template.sh
 
   template-javascript:
     name: "Template: javascript"
@@ -92,12 +87,7 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: |
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git config --global user.name "github-actions"
-          git add .
-          git commit -m "[automated] Update template"
-          git push origin HEAD --force
+      - run: .github/scripts/push-template.sh
 
   template-sapper-typescript:
     name: "Template: sapper-typescript"
@@ -146,12 +136,7 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: |
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git config --global user.name "github-actions"
-          git add .
-          git commit -m "[automated] Update template"
-          git push origin HEAD --force
+      - run: .github/scripts/push-template.sh
 
   template-sapper-javascript:
     name: "Template: sapper-javascript"
@@ -199,9 +184,26 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
+      - run: .github/scripts/push-template.sh
+
+  template-typescript-tailwind:
+    name: "Template: typescript-tailwind"
+    runs-on: ubuntu-latest
+    needs: [template-typescript]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - run: |
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git config --global user.name "github-actions"
-          git add .
-          git commit -m "[automated] Update template"
-          git push origin HEAD --force
+          sudo mkdir -p /var/svelte-template/scripts
+          sudo cp -r scripts /var/svelte-template
+
+      - run: git switch origin/sapper-typescript
+      - run: git switch --orphan typescript-tailwind
+
+      - run: .github/scripts/push-template.sh
