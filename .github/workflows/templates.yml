@@ -46,7 +46,12 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: .github/scripts/push-template.sh
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
 
   template-javascript:
     name: "Template: javascript"
@@ -87,7 +92,12 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: .github/scripts/push-template.sh
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
 
   template-sapper-typescript:
     name: "Template: sapper-typescript"
@@ -136,7 +146,12 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: .github/scripts/push-template.sh
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
 
   template-sapper-javascript:
     name: "Template: sapper-javascript"
@@ -184,7 +199,12 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: .github/scripts/push-template.sh
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
 
   template-typescript-tailwind:
     name: "Template: typescript-tailwind"
@@ -206,4 +226,9 @@ jobs:
       - run: git switch origin/sapper-typescript
       - run: git switch --orphan typescript-tailwind
 
-      - run: .github/scripts/push-template.sh
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
