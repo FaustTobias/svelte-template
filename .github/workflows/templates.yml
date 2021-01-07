@@ -217,7 +217,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
 
       - run: |
           sudo mkdir -p /var/svelte-template/scripts
@@ -226,11 +226,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-          ref: sapper-typescript
+          ref: typescript
 
       - run: git switch --force-create typescript-tailwind
 
       - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting
+      - run: node scripts/setup-tailwind
 
       - run: |
           git config --global user.email "github-actions@users.noreply.github.com"
