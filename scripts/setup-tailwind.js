@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     // for tailwind UI users only
-    require('@tailwindcss/ui'),
+    // require('@tailwindcss/ui'),
     // other plugins here
   ],
   purge: {
