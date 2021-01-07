@@ -230,7 +230,7 @@ jobs:
 
       - run: git switch --force-create typescript-tailwind
 
-      - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting
+      - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
       - run: node /var/svelte-template/scripts/setup-tailwind
 
       - run: |
