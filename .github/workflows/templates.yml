@@ -228,7 +228,6 @@ jobs:
           fetch-depth: 1
           ref: sapper-typescript
 
-      - run: git switch origin/sapper-typescript
       - run: git switch --orphan typescript-tailwind
 
       - run: |
