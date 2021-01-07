@@ -228,7 +228,7 @@ jobs:
           fetch-depth: 1
           ref: sapper-typescript
 
-      - run: git switch --orphan typescript-tailwind
+      - run: git switch --force-create typescript-tailwind
 
       - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting
 
