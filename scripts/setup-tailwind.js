@@ -55,18 +55,38 @@ fs.writeFileSync(
 `
 );
 
-let app = fs.readFileSync("src/App.svelte", "utf8");
-app = app.replace(
-  /(<script lang="ts">)/,
-  `$1
+if (fs.existsSync("src/App.svelte")) {
+  let app = fs.readFileSync("src/App.svelte", "utf8");
+  app = app.replace(
+    /(<script lang="ts">)/,
+    `$1
 \timport Tailwind from "./Tailwind.svelte";
 `
-);
-app = app.replace(
-  /(<main>)/,
-  `<!-- Embed the tailwind stylesheets -->
+  );
+  app = app.replace(
+    /(<main>)/,
+    `<!-- Embed the tailwind stylesheets -->
 <Tailwind />
 
 $1`
-);
-fs.writeFileSync("src/App.svelte", app);
+  );
+  fs.writeFileSync("src/App.svelte", app);
+}
+
+if (fs.existsSync("src/routes/_layout.svelte")) {
+  let layout = fs.readFileSync("src/routes/_layout.svelte", "utf8");
+  layout = layout.replace(
+    /(<script lang="ts">)/,
+    `$1
+\timport Tailwind from "./Tailwind.svelte";
+`
+  );
+  layout = layout.replace(
+    /(<main>)/,
+    `<!-- Embed the tailwind stylesheets -->
+<Tailwind />
+
+$1`
+  );
+  fs.writeFileSync("src/routes/_layout.svelte", layout);
+}
