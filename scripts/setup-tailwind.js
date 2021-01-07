@@ -78,7 +78,7 @@ if (fs.existsSync("src/routes/_layout.svelte")) {
   layout = layout.replace(
     /(<script lang="ts">)/,
     `$1
-\timport Tailwind from "./Tailwind.svelte";
+\timport Tailwind from "../Tailwind.svelte";
 `
   );
   layout = layout.replace(
