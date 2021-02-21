@@ -28,8 +28,8 @@ module.exports = {
 
 let rollup = fs.readFileSync("rollup.config.js", "utf8");
 rollup = rollup.replace(
-  /(sveltePreprocess\()(\))/,
-  `$1{
+  /(sveltePreprocess\({)/,
+  `$1
 \t\t\t\tpostcss: {
 \t\t\t\t\tplugins: [
 \t\t\t\t\t\trequire("tailwindcss"), 
@@ -37,7 +37,7 @@ rollup = rollup.replace(
 \t\t\t\t\t\trequire("postcss-nesting")
 \t\t\t\t\t],
 \t\t\t\t},
-\t\t\t}$2`
+\t\t\t`
 );
 fs.writeFileSync("rollup.config.js", rollup);
 
