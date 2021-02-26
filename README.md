@@ -30,9 +30,9 @@ npx degit FaustTobias/svelte-template#<template-name>
 | sapper-typescript | Preconfigured [yarn 2] [sapper] project with TypeScript integration. Useful for websites. Based on [sveltejs/sapper-template#rollup]. |
 | sapper-javascript | Preconfigured [yarn 2] [sapper] project without preprocessor integrations. Useful for websites. Based on [sveltejs/sapper-template#rollup]. |
 
-## Maintainers
+## Maintainer
 
-- [Tobias Faust](https://github.com/FaustTobias)
+[Tobias Faust](https://github.com/FaustTobias)
 
 <!-- links -->
 
