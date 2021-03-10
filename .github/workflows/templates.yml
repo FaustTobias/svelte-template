@@ -21,6 +21,10 @@ jobs:
           with:
             node-version: "14"
 
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
+
         - run: git switch --orphan typescript
 
         - run: npx degit sveltejs/template --force
@@ -74,6 +78,10 @@ jobs:
           with:
             node-version: "14"
 
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
+
         - run: git switch --orphan javascript
 
         - run: npx degit sveltejs/template --force
@@ -100,6 +108,12 @@ jobs:
             cat >>.gitattributes <<EOL
             /.yarn/** linguist-vendored
             EOL
+
+        - run: node $SCRIPTS/add-prettier
+        - run: node $SCRIPTS/add-lint-staged
+
+        - run: yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: yarn format
 
         - run: |
             git config --global user.email "github-actions@users.noreply.github.com"
