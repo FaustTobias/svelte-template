@@ -32,8 +32,8 @@ yarn
 
 | Name                       | Description                                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| snowpack-typescript        | Preconfigured [yarn 2] [snowpack] project with TypeScript integration. Useful for websites.                                                           |
-| snowpack-javascript        | Preconfigured [yarn 2] [snowpack] project without preprocessor integrations. Useful for websites.                                                     |
+| snowpack-typescript        | Preconfigured [yarn 2] [snowpack] project with TypeScript integration. Useful for single page applications.                                           |
+| snowpack-javascript        | Preconfigured [yarn 2] [snowpack] project without preprocessor integrations. Useful for single page applications.                                     |
 | typescript-tailwind        | Preconfigured [yarn 2] project with TypeScript integration and TailwindCSS. Useful for single page applications. Based on [sveltejs/template].        |
 | typescript                 | Preconfigured [yarn 2] project with TypeScript integration. Useful for single page applications. Based on [sveltejs/template].                        |
 | javascript                 | Preconfigured [yarn 2] project without preprocessor integrations. Useful for single page applications. Based on [sveltejs/template].                  |
