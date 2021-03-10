@@ -274,7 +274,7 @@ jobs:
   #         git commit -m "[automated] Update template"
   #         git push origin HEAD --force
 
-  template-snowpack:
+  template-snowpack-javascript:
     name: "template: snowpack-javascript"
     runs-on: ubuntu-latest
     steps:
@@ -289,11 +289,6 @@ jobs:
       - run: |
           sudo mkdir -p /var/svelte-template/scripts
           sudo cp -r scripts /var/svelte-template
-
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-          ref: sapper-typescript
 
       - run: git switch --orphan snowpack-javascript
 
@@ -314,7 +309,58 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: yarn add -D svelte-hmr
+      - run: |
+          yarn add -D svelte-hmr svelte-language-server
+          yarn dlx @yarnpkg/pnpify --sdk vscode
+
+      - run: yarn test
+
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
+
+  template-snowpack-typescript:
+    name: "template: snowpack-typescript"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - run: |
+          sudo mkdir -p /var/svelte-template/scripts
+          sudo cp -r scripts /var/svelte-template
+
+      - run: git switch --orphan snowpack-typescript
+
+      - run: yarn set version berry
+      - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte --force --use-yarn
+      - run: |
+          cat >>.gitignore <<EOL
+
+          .yarn/*
+          !.yarn/cache
+          !.yarn/releases
+          !.yarn/plugins
+          !.yarn/sdks
+          !.yarn/versions
+          EOL
+      - run: |
+          cat >>.gitattributes <<EOL
+          /.yarn/** linguist-vendored
+          EOL
+
+      - run: |
+          yarn add -D svelte-hmr svelte-language-server
+          yarn plugin import typescript
+          yarn dlx @yarnpkg/pnpify --sdk vscode
 
       - run: yarn test
 
