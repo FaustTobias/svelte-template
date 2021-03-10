@@ -9,273 +9,291 @@ env:
   SCRIPTS: /var/svelte-template/scripts
 
 jobs:
-    # template-typescript:
-    #   name: "Template: typescript"
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+    template-typescript:
+      name: "Template: typescript"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
 
-    #     - run: git switch --orphan typescript
+        - run: git switch --orphan typescript
 
-    #     - run: npx degit sveltejs/template --force
-    #     - run: node scripts/setupTypeScript.js
-    #     - run: yarn set version berry
-    #     - run: yarn
+        - run: npx degit sveltejs/template --force
+        - run: node scripts/setupTypeScript.js
+        - run: yarn set version berry
+        - run: yarn
 
-    #     - run: |
-    #         yarn add -D svelte-language-server
-    #         yarn dlx @yarnpkg/pnpify --sdk vscode
-    #         yarn plugin import typescript
+        - run: |
+            yarn add -D svelte-language-server
+            yarn dlx @yarnpkg/pnpify --sdk vscode
+            yarn plugin import typescript
 
-    #     - run: |
-    #         cat >>.gitignore <<EOL
+        - run: |
+            cat >>.gitignore <<EOL
 
-    #         .yarn/*
-    #         !.yarn/cache
-    #         !.yarn/releases
-    #         !.yarn/plugins
-    #         !.yarn/sdks
-    #         !.yarn/versions
-    #         EOL
+            .yarn/*
+            !.yarn/cache
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            EOL
 
-    #     - run: |
-    #         cat >>.gitattributes <<EOL
-    #         /.yarn/** linguist-vendored
-    #         EOL
+        - run: |
+            cat >>.gitattributes <<EOL
+            /.yarn/** linguist-vendored
+            EOL
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+        - run: node $SCRIPTS/add-prettier
+        - run: node $SCRIPTS/add-lint-staged
 
-    # template-javascript:
-    #   name: "Template: javascript"
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+        - run: yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: yarn format
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
-    #     - run: git switch --orphan javascript
+    template-javascript:
+      name: "Template: javascript"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    #     - run: npx degit sveltejs/template --force
-    #     - run: rm scripts/setupTypeScript.js
-    #     - run: yarn set version berry
-    #     - run: yarn
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
 
-    #     - run: |
-    #         yarn add -D svelte-language-server
-    #         yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: git switch --orphan javascript
 
-    #     - run: |
-    #         cat >>.gitignore <<EOL
+        - run: npx degit sveltejs/template --force
+        - run: rm scripts/setupTypeScript.js
+        - run: yarn set version berry
+        - run: yarn
 
-    #         .yarn/*
-    #         !.yarn/cache
-    #         !.yarn/releases
-    #         !.yarn/plugins
-    #         !.yarn/sdks
-    #         !.yarn/versions
-    #         EOL
+        - run: |
+            yarn add -D svelte-language-server
+            yarn dlx @yarnpkg/pnpify --sdk vscode
 
-    #     - run: |
-    #         cat >>.gitattributes <<EOL
-    #         /.yarn/** linguist-vendored
-    #         EOL
+        - run: |
+            cat >>.gitignore <<EOL
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+            .yarn/*
+            !.yarn/cache
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            EOL
 
-    # template-sapper-typescript:
-    #   name: "Template: sapper-typescript"
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+        - run: |
+            cat >>.gitattributes <<EOL
+            /.yarn/** linguist-vendored
+            EOL
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
-    #     - run: |
-    #         sudo mkdir -p $SCRIPTS
-    #         sudo cp -r scripts /var/svelte-template
+    template-sapper-typescript:
+      name: "Template: sapper-typescript"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    #     - run: git switch --orphan sapper-typescript
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
 
-    #     - run: npx degit sveltejs/sapper-template#rollup --force
-    #     - run: node scripts/setupTypeScript.js
-    #     - run: yarn set version berry
-    #     - run: yarn
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
 
-    #     - run: yarn add -D @rollup/plugin-alias
-    #     - run: node $SCRIPTS/fix-sapper-pnp.js
+        - run: git switch --orphan sapper-typescript
 
-    #     - run: |
-    #         yarn add -D svelte-language-server
-    #         yarn dlx @yarnpkg/pnpify --sdk vscode
-    #         yarn plugin import typescript
+        - run: npx degit sveltejs/sapper-template#rollup --force
+        - run: node scripts/setupTypeScript.js
+        - run: yarn set version berry
+        - run: yarn
 
-    #     - run: |
-    #         cat >>.gitignore <<EOL
+        - run: yarn add -D @rollup/plugin-alias
+        - run: node $SCRIPTS/fix-sapper-pnp.js
 
-    #         .yarn/*
-    #         !.yarn/cache
-    #         !.yarn/releases
-    #         !.yarn/plugins
-    #         !.yarn/sdks
-    #         !.yarn/versions
-    #         EOL
+        - run: |
+            yarn add -D svelte-language-server
+            yarn dlx @yarnpkg/pnpify --sdk vscode
+            yarn plugin import typescript
 
-    #     - run: |
-    #         cat >>.gitattributes <<EOL
-    #         /.yarn/** linguist-vendored
-    #         EOL
+        - run: |
+            cat >>.gitignore <<EOL
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+            .yarn/*
+            !.yarn/cache
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            EOL
 
-    # template-sapper-javascript:
-    #   name: "Template: sapper-javascript"
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+        - run: |
+            cat >>.gitattributes <<EOL
+            /.yarn/** linguist-vendored
+            EOL
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+        - run: node $SCRIPTS/add-prettier
+        - run: node $SCRIPTS/add-lint-staged
 
-    #     - run: |
-    #         sudo mkdir -p $SCRIPTS
-    #         sudo cp -r scripts /var/svelte-template
+        - run: yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: yarn format
 
-    #     - run: git switch --orphan sapper-javascript
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
-    #     - run: npx degit sveltejs/sapper-template#rollup --force
-    #     - run: rm scripts/setupTypeScript.js
-    #     - run: yarn set version berry
-    #     - run: yarn
+    template-sapper-javascript:
+      name: "Template: sapper-javascript"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    #     - run: yarn add -D @rollup/plugin-alias
-    #     - run: node $SCRIPTS/fix-sapper-pnp.js
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
 
-    #     - run: |
-    #         yarn add -D svelte-language-server
-    #         yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
 
-    #     - run: |
-    #         cat >>.gitignore <<EOL
+        - run: git switch --orphan sapper-javascript
 
-    #         .yarn/*
-    #         !.yarn/cache
-    #         !.yarn/releases
-    #         !.yarn/plugins
-    #         !.yarn/sdks
-    #         !.yarn/versions
-    #         EOL
+        - run: npx degit sveltejs/sapper-template#rollup --force
+        - run: rm scripts/setupTypeScript.js
+        - run: yarn set version berry
+        - run: yarn
 
-    #     - run: |
-    #         cat >>.gitattributes <<EOL
-    #         /.yarn/** linguist-vendored
-    #         EOL
+        - run: yarn add -D @rollup/plugin-alias
+        - run: node $SCRIPTS/fix-sapper-pnp.js
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+        - run: |
+            yarn add -D svelte-language-server
+            yarn dlx @yarnpkg/pnpify --sdk vscode
 
-    # template-typescript-tailwind:
-    #   name: "Template: typescript-tailwind"
-    #   runs-on: ubuntu-latest
-    #   needs: [template-typescript]
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+        - run: |
+            cat >>.gitignore <<EOL
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+            .yarn/*
+            !.yarn/cache
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            EOL
 
-    #     - run: |
-    #         sudo mkdir -p $SCRIPTS
-    #         sudo cp -r scripts /var/svelte-template
+        - run: |
+            cat >>.gitattributes <<EOL
+            /.yarn/** linguist-vendored
+            EOL
 
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
-    #         ref: typescript
+        - run: node $SCRIPTS/add-prettier
+        - run: node $SCRIPTS/add-lint-staged
 
-    #     - run: git switch --force-create typescript-tailwind
+        - run: yarn dlx @yarnpkg/pnpify --sdk vscode
+        - run: yarn format
 
-    #     - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
-    #     - run: node $SCRIPTS/setup-tailwind
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+    template-typescript-tailwind:
+      name: "Template: typescript-tailwind"
+      runs-on: ubuntu-latest
+      needs: [template-typescript]
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    # template-sapper-typescript-tailwind:
-    #   name: "Template: sapper-typescript-tailwind"
-    #   runs-on: ubuntu-latest
-    #   needs: [template-sapper-typescript]
-    #   steps:
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
 
-    #     - uses: actions/setup-node@v2
-    #       with:
-    #         node-version: "14"
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
 
-    #     - run: |
-    #         sudo mkdir -p $SCRIPTS
-    #         sudo cp -r scripts /var/svelte-template
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
+            ref: typescript
 
-    #     - uses: actions/checkout@v2
-    #       with:
-    #         fetch-depth: 1
-    #         ref: sapper-typescript
+        - run: git switch --force-create typescript-tailwind
 
-    #     - run: git switch --force-create sapper-typescript-tailwind
+        - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
+        - run: node $SCRIPTS/setup-tailwind
 
-    #     - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
-    #     - run: node $SCRIPTS/setup-tailwind
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
-    #     - run: |
-    #         git config --global user.email "github-actions@users.noreply.github.com"
-    #         git config --global user.name "github-actions"
-    #         git add .
-    #         git commit -m "[automated] Update template"
-    #         git push origin HEAD --force
+    template-sapper-typescript-tailwind:
+      name: "Template: sapper-typescript-tailwind"
+      runs-on: ubuntu-latest
+      needs: [template-sapper-typescript]
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
+
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "14"
+
+        - run: |
+            sudo mkdir -p $SCRIPTS
+            sudo cp -r scripts /var/svelte-template
+
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
+            ref: sapper-typescript
+
+        - run: git switch --force-create sapper-typescript-tailwind
+
+        - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
+        - run: node $SCRIPTS/setup-tailwind
+
+        - run: |
+            git config --global user.email "github-actions@users.noreply.github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "[automated] Update template"
+            git push origin HEAD --force
 
     template-snowpack-javascript:
         name: "template: snowpack-javascript"
@@ -312,16 +330,16 @@ jobs:
                   /.yarn/** linguist-vendored
                   EOL
 
-            - run: node $SCRIPTS/add-prettier
-            - run: node $SCRIPTS/add-lint-staged
-
             - run: |
                   yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
                   node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
                   yarn dlx @yarnpkg/pnpify --sdk vscode
 
+            - run: node $SCRIPTS/add-prettier
+            - run: node $SCRIPTS/add-lint-staged
+
+            - run: yarn dlx @yarnpkg/pnpify --sdk vscode
             - run: yarn format
-            - run: yarn test
 
             - run: |
                   git config --global user.email "github-actions@users.noreply.github.com"
@@ -365,17 +383,17 @@ jobs:
                   /.yarn/** linguist-vendored
                   EOL
 
-            - run: node $SCRIPTS/add-prettier
-            - run: node $SCRIPTS/add-lint-staged
-
             - run: |
                   yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
                   yarn plugin import typescript
                   node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
                   yarn dlx @yarnpkg/pnpify --sdk vscode
 
+            - run: node $SCRIPTS/add-prettier
+            - run: node $SCRIPTS/add-lint-staged
+
+            - run: yarn dlx @yarnpkg/pnpify --sdk vscode
             - run: yarn format
-            - run: yarn test
 
             - run: |
                   git config --global user.email "github-actions@users.noreply.github.com"
