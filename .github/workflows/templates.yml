@@ -357,7 +357,7 @@ jobs:
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
-      - run:
+      - run: |
           node /var/svelte-template/scripts/add-prettier-format
           yarn format
 
@@ -454,7 +454,7 @@ jobs:
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
-      - run:
+      - run: |
           node /var/svelte-template/scripts/add-prettier-format
           yarn format
 
