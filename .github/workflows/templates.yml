@@ -298,7 +298,7 @@ jobs:
       - run: git switch --orphan snowpack-javascript
 
       - run: yarn set version berry
-      - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-minimal --force --use-yarn
+      - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte --force --use-yarn
       - run: |
           cat >>.gitignore <<EOL
 
@@ -314,11 +314,9 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: yarn add -D svelte svelte-hmr @snowpack/plugin-svelte
-      - run: node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-svelte
-      - run: |
-          yarn add -D svelte-language-server
-          yarn dlx @yarnpkg/pnpify --sdk vscode
+      - run: yarn add -D svelte-hmr
+
+      - run: yarn test
 
       - run: |
           git config --global user.email "github-actions@users.noreply.github.com"
