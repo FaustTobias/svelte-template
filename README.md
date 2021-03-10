@@ -21,14 +21,14 @@ npx degit FaustTobias/svelte-template#<template-name>
 
 ## Available templates
 
-| Name | Description |
-|-|-|
-| typescript-tailwind | Preconfigured [yarn 2] project with TypeScript integration and TailwindCSS. Useful for single page applications. Based on [sveltejs/template]. |
-| typescript | Preconfigured [yarn 2] project with TypeScript integration. Useful for single page applications. Based on [sveltejs/template]. |
-| javascript | Preconfigured [yarn 2] project without preprocessor integrations. Useful for single page applications. Based on [sveltejs/template]. |
+| Name                       | Description                                                                                                                                           |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| typescript-tailwind        | Preconfigured [yarn 2] project with TypeScript integration and TailwindCSS. Useful for single page applications. Based on [sveltejs/template].        |
+| typescript                 | Preconfigured [yarn 2] project with TypeScript integration. Useful for single page applications. Based on [sveltejs/template].                        |
+| javascript                 | Preconfigured [yarn 2] project without preprocessor integrations. Useful for single page applications. Based on [sveltejs/template].                  |
 | sapper-typescript-tailwind | Preconfigured [yarn 2] [sapper] project with TypeScript integration and TailwindCSS. Useful for websites. Based on [sveltejs/sapper-template#rollup]. |
-| sapper-typescript | Preconfigured [yarn 2] [sapper] project with TypeScript integration. Useful for websites. Based on [sveltejs/sapper-template#rollup]. |
-| sapper-javascript | Preconfigured [yarn 2] [sapper] project without preprocessor integrations. Useful for websites. Based on [sveltejs/sapper-template#rollup]. |
+| sapper-typescript          | Preconfigured [yarn 2] [sapper] project with TypeScript integration. Useful for websites. Based on [sveltejs/sapper-template#rollup].                 |
+| sapper-javascript          | Preconfigured [yarn 2] [sapper] project without preprocessor integrations. Useful for websites. Based on [sveltejs/sapper-template#rollup].           |
 
 ## Maintainer
 

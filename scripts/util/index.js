@@ -1,5 +1,5 @@
 module.exports = {
-  ...require("./editJsonFile"),
-  ...require("./installPackage"),
-  ...require("./writeCodeFile"),
+    ...require("./editJsonFile"),
+    ...require("./installPackage"),
+    ...require("./writeCodeFile"),
 };

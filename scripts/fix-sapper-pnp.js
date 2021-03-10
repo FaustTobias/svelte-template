@@ -1,12 +1,12 @@
 // This file fixes resolve issues since sapper makes use of a node_modules folder inside src.
 // May be merged with this PR: https://github.com/sveltejs/sapper-template/pull/201
 
-const fs = require('fs');
+const fs = require("fs");
 
-let config = fs.readFileSync('rollup.config.js', 'utf8');
+let config = fs.readFileSync("rollup.config.js", "utf8");
 
 config = config.replace(
-    'import resolve from',
+    "import resolve from",
     `
 import alias from '@rollup/plugin-alias';
 import resolve from
@@ -32,4 +32,4 @@ $1resolve(
     `.trim()
 );
 
-fs.writeFileSync('rollup.config.js', config);
+fs.writeFileSync("rollup.config.js", config);

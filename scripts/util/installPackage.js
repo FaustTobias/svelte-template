@@ -9,16 +9,16 @@
  * @param {InstallPackageOptions} options
  */
 function installPackage(pkg, options) {
-  if (!Array.isArray(pkg)) {
-    pkg = [pkg];
-  }
+    if (!Array.isArray(pkg)) {
+        pkg = [pkg];
+    }
 
-  const cp = require("child_process");
-  cp.execSync(`yarn add ${options?.dev ? "-D " : ""}${pkg.join(" ")}`, {
-    stdio: "inherit",
-  });
+    const cp = require("child_process");
+    cp.execSync(`yarn add ${options?.dev ? "-D " : ""}${pkg.join(" ")}`, {
+        stdio: "inherit",
+    });
 }
 
 module.exports = {
-  installPackage,
+    installPackage,
 };
