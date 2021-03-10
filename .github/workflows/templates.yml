@@ -295,7 +295,7 @@ jobs:
           fetch-depth: 1
           ref: sapper-typescript
 
-      - run: git switch --force-create snowpack-javascript
+      - run: git switch --orphan snowpack-javascript
 
       - run: yarn set version berry
       - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-minimal --force --use-yarn
