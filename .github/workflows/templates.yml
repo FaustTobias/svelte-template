@@ -352,14 +352,14 @@ jobs:
           indent_style = tab
           EOL
 
-      - run:
-          node /var/svelte-template/scripts/add-prettier-format
-          yarn format
-
       - run: |
           yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
+
+      - run:
+          node /var/svelte-template/scripts/add-prettier-format
+          yarn format
 
       - run: yarn test
 
@@ -448,15 +448,15 @@ jobs:
           indent_style = tab
           EOL
 
-      - run:
-          node /var/svelte-template/scripts/add-prettier-format
-          yarn format
-
       - run: |
           yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
           yarn plugin import typescript
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
+
+      - run:
+          node /var/svelte-template/scripts/add-prettier-format
+          yarn format
 
       - run: yarn test
 
