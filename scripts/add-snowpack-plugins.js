@@ -5,7 +5,7 @@ const plugins = process.argv.slice(2);
 
 snowpack = snowpack.replace(
   /(plugins:\s*\[)/,
-  "$1" + plugins.map(JSON.stringify).join(", ")
+  "$1" + plugins.map(JSON.stringify).join(", ") + ","
 );
 
 fs.writeFileSync("snowpack.config.js", snowpack);
