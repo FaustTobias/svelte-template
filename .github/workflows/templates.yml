@@ -5,6 +5,9 @@ on:
     schedule:
         - cron: "0 0 * * *"
 
+env:
+  SCRIPTS: /var/svelte-template/scripts
+
 jobs:
     # template-typescript:
     #   name: "Template: typescript"
@@ -112,7 +115,7 @@ jobs:
     #         node-version: "14"
 
     #     - run: |
-    #         sudo mkdir -p /var/svelte-template/scripts
+    #         sudo mkdir -p $SCRIPTS
     #         sudo cp -r scripts /var/svelte-template
 
     #     - run: git switch --orphan sapper-typescript
@@ -123,7 +126,7 @@ jobs:
     #     - run: yarn
 
     #     - run: yarn add -D @rollup/plugin-alias
-    #     - run: node /var/svelte-template/scripts/fix-sapper-pnp.js
+    #     - run: node $SCRIPTS/fix-sapper-pnp.js
 
     #     - run: |
     #         yarn add -D svelte-language-server
@@ -166,7 +169,7 @@ jobs:
     #         node-version: "14"
 
     #     - run: |
-    #         sudo mkdir -p /var/svelte-template/scripts
+    #         sudo mkdir -p $SCRIPTS
     #         sudo cp -r scripts /var/svelte-template
 
     #     - run: git switch --orphan sapper-javascript
@@ -177,7 +180,7 @@ jobs:
     #     - run: yarn
 
     #     - run: yarn add -D @rollup/plugin-alias
-    #     - run: node /var/svelte-template/scripts/fix-sapper-pnp.js
+    #     - run: node $SCRIPTS/fix-sapper-pnp.js
 
     #     - run: |
     #         yarn add -D svelte-language-server
@@ -220,7 +223,7 @@ jobs:
     #         node-version: "14"
 
     #     - run: |
-    #         sudo mkdir -p /var/svelte-template/scripts
+    #         sudo mkdir -p $SCRIPTS
     #         sudo cp -r scripts /var/svelte-template
 
     #     - uses: actions/checkout@v2
@@ -231,7 +234,7 @@ jobs:
     #     - run: git switch --force-create typescript-tailwind
 
     #     - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
-    #     - run: node /var/svelte-template/scripts/setup-tailwind
+    #     - run: node $SCRIPTS/setup-tailwind
 
     #     - run: |
     #         git config --global user.email "github-actions@users.noreply.github.com"
@@ -254,7 +257,7 @@ jobs:
     #         node-version: "14"
 
     #     - run: |
-    #         sudo mkdir -p /var/svelte-template/scripts
+    #         sudo mkdir -p $SCRIPTS
     #         sudo cp -r scripts /var/svelte-template
 
     #     - uses: actions/checkout@v2
@@ -265,7 +268,7 @@ jobs:
     #     - run: git switch --force-create sapper-typescript-tailwind
 
     #     - run: yarn add -D svelte-preprocess tailwindcss autoprefixer postcss-nesting postcss
-    #     - run: node /var/svelte-template/scripts/setup-tailwind
+    #     - run: node $SCRIPTS/setup-tailwind
 
     #     - run: |
     #         git config --global user.email "github-actions@users.noreply.github.com"
@@ -287,7 +290,7 @@ jobs:
                   node-version: "14"
 
             - run: |
-                  sudo mkdir -p /var/svelte-template/scripts
+                  sudo mkdir -p $SCRIPTS
                   sudo cp -r scripts /var/svelte-template
 
             - run: git switch --orphan snowpack-javascript
@@ -309,11 +312,12 @@ jobs:
                   /.yarn/** linguist-vendored
                   EOL
 
-            - run: node /var/svelte-template/scripts/add-prettier
+            - run: node $SCRIPTS/add-prettier
+            - run: node $SCRIPTS/add-lint-staged
 
             - run: |
                   yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
-                  node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
+                  node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
                   yarn dlx @yarnpkg/pnpify --sdk vscode
 
             - run: yarn format
@@ -339,7 +343,7 @@ jobs:
                   node-version: "14"
 
             - run: |
-                  sudo mkdir -p /var/svelte-template/scripts
+                  sudo mkdir -p $SCRIPTS
                   sudo cp -r scripts /var/svelte-template
 
             - run: git switch --orphan snowpack-typescript
@@ -361,12 +365,13 @@ jobs:
                   /.yarn/** linguist-vendored
                   EOL
 
-            - run: node /var/svelte-template/scripts/add-prettier
+            - run: node $SCRIPTS/add-prettier
+            - run: node $SCRIPTS/add-lint-staged
 
             - run: |
                   yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
                   yarn plugin import typescript
-                  node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
+                  node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
                   yarn dlx @yarnpkg/pnpify --sdk vscode
 
             - run: yarn format
