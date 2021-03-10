@@ -316,6 +316,9 @@ jobs:
 
       - run: yarn add -D svelte svelte-hmr @snowpack/plugin-svelte
       - run: node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-svelte
+      - run: |
+          yarn add -D svelte-language-server
+          yarn dlx @yarnpkg/pnpify --sdk vscode
 
       - run: |
           git config --global user.email "github-actions@users.noreply.github.com"
