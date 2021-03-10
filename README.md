@@ -18,22 +18,16 @@ Every template contains the following features:
 - Code formatting using [prettier](https://prettier.io/)
 - Pre-commit linting using [lint-staged](https://github.com/okonet/lint-staged) with [husky@4](https://typicode.github.io/husky)<sup>\[[?](#why-husky-4)\]</sup>
 
-## Installation
-
-To install a template, simply run:
-
-```bash
-npx degit FaustTobias/svelte-template#<template-name>
-```
-
 ## Available templates
 
-If you are unsure which one to pick, choose this one:
+If you are unsure which one to pick, choose the `snowpack-typescript` one:
 
 ```bash
 mkdir <project-name>
 cd <project-name>
+git init
 npx degit FaustTobias/svelte-template#snowpack-typescript .
+yarn
 ```
 
 | Name                       | Description                                                                                                                                           |
