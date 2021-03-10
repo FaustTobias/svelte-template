@@ -3,8 +3,8 @@
 const fs = require("fs");
 
 fs.writeFileSync(
-  "tailwind.config.js",
-  `const production = !process.env.ROLLUP_WATCH; // or some other env var like NODE_ENV
+    "tailwind.config.js",
+    `const production = !process.env.ROLLUP_WATCH; // or some other env var like NODE_ENV
 module.exports = {
   future: { // for tailwind 2.0 compat
     purgeLayersByDefault: true, 
@@ -28,8 +28,8 @@ module.exports = {
 
 let rollup = fs.readFileSync("rollup.config.js", "utf8");
 rollup = rollup.replace(
-  /(sveltePreprocess\({)/,
-  `$1
+    /(sveltePreprocess\({)/,
+    `$1
 \t\t\t\tpostcss: {
 \t\t\t\t\tplugins: [
 \t\t\t\t\t\trequire("tailwindcss"), 
@@ -42,8 +42,8 @@ rollup = rollup.replace(
 fs.writeFileSync("rollup.config.js", rollup);
 
 fs.writeFileSync(
-  "src/Tailwind.svelte",
-  `<style global lang="postcss">
+    "src/Tailwind.svelte",
+    `<style global lang="postcss">
 \t/* only apply purgecss on utilities, per Tailwind docs */
 \t/* purgecss start ignore */
 \t@tailwind base;
@@ -56,37 +56,37 @@ fs.writeFileSync(
 );
 
 if (fs.existsSync("src/App.svelte")) {
-  let app = fs.readFileSync("src/App.svelte", "utf8");
-  app = app.replace(
-    /(<script lang="ts">)/,
-    `$1
+    let app = fs.readFileSync("src/App.svelte", "utf8");
+    app = app.replace(
+        /(<script lang="ts">)/,
+        `$1
 \timport Tailwind from "./Tailwind.svelte";
 `
-  );
-  app = app.replace(
-    /(<main>)/,
-    `<!-- Embed the tailwind stylesheets -->
+    );
+    app = app.replace(
+        /(<main>)/,
+        `<!-- Embed the tailwind stylesheets -->
 <Tailwind />
 
 $1`
-  );
-  fs.writeFileSync("src/App.svelte", app);
+    );
+    fs.writeFileSync("src/App.svelte", app);
 }
 
 if (fs.existsSync("src/routes/_layout.svelte")) {
-  let layout = fs.readFileSync("src/routes/_layout.svelte", "utf8");
-  layout = layout.replace(
-    /(<script lang="ts">)/,
-    `$1
+    let layout = fs.readFileSync("src/routes/_layout.svelte", "utf8");
+    layout = layout.replace(
+        /(<script lang="ts">)/,
+        `$1
 \timport Tailwind from "../Tailwind.svelte";
 `
-  );
-  layout = layout.replace(
-    /(<main>)/,
-    `<!-- Embed the tailwind stylesheets -->
+    );
+    layout = layout.replace(
+        /(<main>)/,
+        `<!-- Embed the tailwind stylesheets -->
 <Tailwind />
 
 $1`
-  );
-  fs.writeFileSync("src/routes/_layout.svelte", layout);
+    );
+    fs.writeFileSync("src/routes/_layout.svelte", layout);
 }
