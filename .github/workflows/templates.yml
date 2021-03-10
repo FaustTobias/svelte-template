@@ -310,7 +310,8 @@ jobs:
           EOL
 
       - run: |
-          yarn add -D svelte-hmr svelte-language-server
+          yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
+          node /var/svelte-template/scripts/add-snowpack-plugin @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
       - run: yarn test
@@ -358,8 +359,9 @@ jobs:
           EOL
 
       - run: |
-          yarn add -D svelte-hmr svelte-language-server
+          yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
           yarn plugin import typescript
+          node /var/svelte-template/scripts/add-snowpack-plugin @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
       - run: yarn test
