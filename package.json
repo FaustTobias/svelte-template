@@ -1,0 +1,1 @@
+{"name":"svelte-template","private":true,"devDependencies":{"prettier":"^2.2.1","prettier-plugin-svelte":"^2.2.0"},"scripts":{"format":"prettier --write . **/*.svelte","format:check":"prettier --check . **/*.svelte"}}

@@ -309,58 +309,14 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: |
-          yarn add -D prettier prettier-plugin-svelte
-
-      - run: |
-          cat >>prettier.config.js <<EOL
-          /** @type {import("prettier").Options } */
-          module.exports = {
-              semi: true,
-              singleQuote: false,
-              printWidth: 120,
-              useTabs: false,
-              tabWidth: 4,
-              plugins: [require("prettier-plugin-svelte")],
-          };
-          EOL
-
-      - run: |
-          cat >>.prettierignore <<EOL
-          .yarn/
-          build/
-          node_modules/
-          .pnp.js
-          EOL
-
-      - run: |
-          cat >>.editorconfig <<EOL
-          root = true
-
-          [*]
-          indent_style = space
-          indent_size = 4
-          charset = utf-8
-          trim_trailing_whitespace = true
-          insert_final_newline = true
-          end_of_line = lf
-
-          [*.{yml,yaml,md}]
-          indent_size = 2
-
-          [Makefile]
-          indent_style = tab
-          EOL
+      - run: node /var/svelte-template/scripts/add-prettier
 
       - run: |
           yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
-      - run: |
-          node /var/svelte-template/scripts/add-prettier-format
-          yarn format
-
+      - run: yarn format
       - run: yarn test
 
       - run: |
@@ -405,48 +361,7 @@ jobs:
           /.yarn/** linguist-vendored
           EOL
 
-      - run: |
-          yarn add -D prettier prettier-plugin-svelte
-
-      - run: |
-          cat >>prettier.config.js <<EOL
-          /** @type {import("prettier").Options } */
-          module.exports = {
-              semi: true,
-              singleQuote: false,
-              printWidth: 120,
-              useTabs: false,
-              tabWidth: 4,
-              plugins: [require("prettier-plugin-svelte")],
-          };
-          EOL
-
-      - run: |
-          cat >>.prettierignore <<EOL
-          .yarn/
-          build/
-          node_modules/
-          .pnp.js
-          EOL
-
-      - run: |
-          cat >>.editorconfig <<EOL
-          root = true
-
-          [*]
-          indent_style = space
-          indent_size = 4
-          charset = utf-8
-          trim_trailing_whitespace = true
-          insert_final_newline = true
-          end_of_line = lf
-
-          [*.{yml,yaml,md}]
-          indent_size = 2
-
-          [Makefile]
-          indent_style = tab
-          EOL
+      - run: node /var/svelte-template/scripts/add-prettier
 
       - run: |
           yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
@@ -454,10 +369,7 @@ jobs:
           node /var/svelte-template/scripts/add-snowpack-plugins @snowpack/plugin-webpack
           yarn dlx @yarnpkg/pnpify --sdk vscode
 
-      - run: |
-          node /var/svelte-template/scripts/add-prettier-format
-          yarn format
-
+      - run: yarn format
       - run: yarn test
 
       - run: |
