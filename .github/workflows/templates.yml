@@ -286,10 +286,33 @@ jobs:
         with:
           node-version: "14"
 
-      - run: git switch --orphan snowpack-javascript
+      - run: git switch --force-create snowpack-javascript
 
       - run: yarn set version berry
 
       - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-minimal --force --use-yarn
 
       - run: yarn add -D svelte svelte-hmr @snowpack/plugin-svelte
+
+      - run: |
+          cat >>.gitignore <<EOL
+
+          .yarn/*
+          !.yarn/cache
+          !.yarn/releases
+          !.yarn/plugins
+          !.yarn/sdks
+          !.yarn/versions
+          EOL
+
+      - run: |
+          cat >>.gitattributes <<EOL
+          /.yarn/** linguist-vendored
+          EOL
+
+      - run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "[automated] Update template"
+          git push origin HEAD --force
