@@ -341,7 +341,7 @@ jobs:
       - run: git switch --orphan snowpack-typescript
 
       - run: yarn set version berry
-      - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte --force --use-yarn
+      - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte-typescript --force --use-yarn
       - run: |
           cat >>.gitignore <<EOL
 
