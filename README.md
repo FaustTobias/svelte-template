@@ -45,7 +45,7 @@ yarn
 
 ### Why husky 4?
 
-Husky caused quite some controversies after releasing its 5.0.0 Release. First of all, its licensed changed to be a [copyleft license](https://paritylicense.com/versions/7.0.0.html). This makes it pretty much unusable in closed source projects. Additionally, its configuration has changed and you have to depend on an external module which handles the postinstall step for you. The templates here will stick to version 4 for now.
+Husky caused quite some controversies after releasing its 5.0.0 Release. First of all, its license was changed to a [copyleft license](https://paritylicense.com/versions/7.0.0.html). This makes it pretty much unusable in closed source projects. Additionally, its configuration has changed and you have to depend on an external module which handles the postinstall step for you. The templates here will stick to version 4 for now.
 
 ## Maintainer
 
