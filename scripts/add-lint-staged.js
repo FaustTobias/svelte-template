@@ -15,7 +15,7 @@ editJsonFile("package.json", (pkg) => {
 
     pkg["lint-staged"] = Object.assign(
         {},
-        [
+        ...[
             scripts["format"] && {
                 "*.{js,ts,json,yml,yaml}": "prettier --write",
             },
