@@ -17,7 +17,7 @@ editJsonFile("package.json", (pkg) => {
         {},
         ...[
             scripts["format"] && {
-                "*.{js,ts,json,yml,yaml}": "prettier --write",
+                "*.{js,ts,json,yml,yaml,svelte}": "prettier --write",
             },
         ].filter(Boolean)
     );
