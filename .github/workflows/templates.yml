@@ -351,9 +351,13 @@ jobs:
 
             - run: node $SCRIPTS/add-prettier
             - run: node $SCRIPTS/add-lint-staged
+            - run: node $SCRIPTS/fix-snowpack-build
 
             - run: yarn dlx @yarnpkg/pnpify --sdk vscode
             - run: yarn format
+
+            - run: yarn test
+            - run: yarn build
 
             - run: |
                   git config --global user.email "github-actions@users.noreply.github.com"
@@ -405,9 +409,13 @@ jobs:
 
             - run: node $SCRIPTS/add-prettier
             - run: node $SCRIPTS/add-lint-staged
+            - run: node $SCRIPTS/fix-snowpack-build
 
             - run: yarn dlx @yarnpkg/pnpify --sdk vscode
             - run: yarn format
+
+            - run: yarn test
+            - run: yarn build
 
             - run: |
                   git config --global user.email "github-actions@users.noreply.github.com"
