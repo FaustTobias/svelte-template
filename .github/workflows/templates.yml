@@ -448,6 +448,7 @@ jobs:
 
             - run: git switch --force-create snowpack-typescript-tailwind
 
+            - run: yarn --immutable
             - run: node $SCRIPTS/setup-tailwind
 
             - run: yarn dlx @yarnpkg/pnpify --sdk vscode
