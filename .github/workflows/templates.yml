@@ -366,63 +366,63 @@ jobs:
     #               git commit -m "[automated] Update template"
     #               git push origin HEAD --force
 
-    template-snowpack-typescript:
-        name: "template: snowpack-typescript"
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-              with:
-                  fetch-depth: 1
+    # template-snowpack-typescript:
+    #     name: "template: snowpack-typescript"
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - uses: actions/checkout@v2
+    #           with:
+    #               fetch-depth: 1
 
-            - uses: actions/setup-node@v2
-              with:
-                  node-version: "14"
+    #         - uses: actions/setup-node@v2
+    #           with:
+    #               node-version: "14"
 
-            - run: |
-                  sudo mkdir -p $SCRIPTS
-                  sudo cp -r scripts /var/svelte-template
+    #         - run: |
+    #               sudo mkdir -p $SCRIPTS
+    #               sudo cp -r scripts /var/svelte-template
 
-            - run: git switch --orphan snowpack-typescript
+    #         - run: git switch --orphan snowpack-typescript
 
-            - run: yarn set version berry
-            - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte-typescript --force --use-yarn
-            - run: |
-                  cat >>.gitignore <<EOL
+    #         - run: yarn set version berry
+    #         - run: yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte-typescript --force --use-yarn
+    #         - run: |
+    #               cat >>.gitignore <<EOL
 
-                  .yarn/*
-                  !.yarn/cache
-                  !.yarn/releases
-                  !.yarn/plugins
-                  !.yarn/sdks
-                  !.yarn/versions
-                  EOL
-            - run: |
-                  cat >>.gitattributes <<EOL
-                  /.yarn/** linguist-vendored
-                  EOL
+    #               .yarn/*
+    #               !.yarn/cache
+    #               !.yarn/releases
+    #               !.yarn/plugins
+    #               !.yarn/sdks
+    #               !.yarn/versions
+    #               EOL
+    #         - run: |
+    #               cat >>.gitattributes <<EOL
+    #               /.yarn/** linguist-vendored
+    #               EOL
 
-            - run: |
-                  yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
-                  yarn plugin import typescript
-                  node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
-                  yarn dlx @yarnpkg/pnpify --sdk vscode
+    #         - run: |
+    #               yarn add -D svelte-hmr svelte-language-server @snowpack/plugin-webpack
+    #               yarn plugin import typescript
+    #               node $SCRIPTS/add-snowpack-plugins @snowpack/plugin-webpack
+    #               yarn dlx @yarnpkg/pnpify --sdk vscode
 
-            - run: node $SCRIPTS/add-prettier
-            - run: node $SCRIPTS/add-lint-staged
-            - run: node $SCRIPTS/fix-snowpack-build
+    #         - run: node $SCRIPTS/add-prettier
+    #         - run: node $SCRIPTS/add-lint-staged
+    #         - run: node $SCRIPTS/fix-snowpack-build
 
-            - run: yarn dlx @yarnpkg/pnpify --sdk vscode
-            - run: yarn format
+    #         - run: yarn dlx @yarnpkg/pnpify --sdk vscode
+    #         - run: yarn format
 
-            - run: yarn test
-            - run: yarn build
+    #         - run: yarn test
+    #         - run: yarn build
 
-            - run: |
-                  git config --global user.email "github-actions@users.noreply.github.com"
-                  git config --global user.name "github-actions"
-                  git add .
-                  git commit -m "[automated] Update template"
-                  git push origin HEAD --force
+    #         - run: |
+    #               git config --global user.email "github-actions@users.noreply.github.com"
+    #               git config --global user.name "github-actions"
+    #               git add .
+    #               git commit -m "[automated] Update template"
+    #               git push origin HEAD --force
 
     template-snowpack-typescript-tailwind:
         name: "Template: snowpack-typescript-tailwind"
