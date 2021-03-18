@@ -392,6 +392,7 @@ jobs:
                   rm -rf .git
 
             - run: |
+                  shopt -s dotglob
                   cp -r /tmp/svelte-template/* ./
                   ls -lah .
 
