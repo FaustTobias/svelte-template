@@ -391,7 +391,9 @@ jobs:
                   yarn dlx create-snowpack-app . --template @snowpack/app-template-svelte-typescript --force --use-yarn
                   rm -rf .git
 
-            - run: cp -r /tmp/svelte-template/* ./
+            - run: |
+                  cp -r /tmp/svelte-template/* ./
+                  ls -lah .
 
             - run: |
                   cat >>.gitignore <<EOL
