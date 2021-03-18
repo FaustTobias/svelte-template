@@ -34,7 +34,7 @@ module.exports = {
 );
 
 if (isSnowpack) {
-    installPackage(["postcss", "postcss-css", "tailwindcss"], { dev: true });
+    installPackage(["postcss", "postcss-cli", "tailwindcss"], { dev: true });
 
     writeCodeFile(
         "postcss.config.js",
