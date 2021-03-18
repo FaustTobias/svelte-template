@@ -26,7 +26,7 @@ If you are unsure which one to pick, choose the `snowpack-typescript` one:
 mkdir <project-name>
 cd <project-name>
 git init
-npx degit FaustTobias/svelte-template#snowpack-typescript . --force
+npx degit FaustTobias/svelte-template#snowpack-typescript-tailwind . --force
 yarn
 ```
 
