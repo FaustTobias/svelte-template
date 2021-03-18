@@ -448,7 +448,7 @@ jobs:
 
             - run: git switch --force-create snowpack-typescript-tailwind
 
-            - run: yarn
+            - run: yarn add -D esbuild
             - run: node $SCRIPTS/setup-tailwind
 
             - run: yarn dlx @yarnpkg/pnpify --sdk vscode
