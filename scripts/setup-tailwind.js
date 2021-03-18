@@ -1,45 +1,67 @@
 // This file adds tailwind with postcss to the rollup config.
 
 const fs = require("fs");
+const addSnowpackPlugins = require("./add-snowpack-plugins");
+const { writeCodeFile, installPackage } = require("./util");
+
+const isRollup = fs.existsSync("rollup.config.js");
+const isSnowpack = fs.existsSync("snowpack.config.js");
 
 fs.writeFileSync(
     "tailwind.config.js",
-    `const production = !process.env.ROLLUP_WATCH; // or some other env var like NODE_ENV
-module.exports = {
-  future: { // for tailwind 2.0 compat
-    purgeLayersByDefault: true, 
-    removeDeprecatedGapUtilities: true,
-  },
-  plugins: [
-    // for tailwind UI users only
-    // require('@tailwindcss/ui'),
-    // other plugins here
-  ],
-  purge: {
-    content: [
-      "./src/**/*.svelte",
-      // may also want to include base index.html
-    ], 
-    enabled: production // disable purge in dev
-  },
+    `const production = ${isRollup ? "!process.env.ROLLUP_WATCH" : 'process.env.NODE_ENV === "production"'};
+
+    module.exports = {
+    future: {
+        purgeLayersByDefault: true,
+        removeDeprecatedGapUtilities: true,
+    },
+    plugins: [
+        // for tailwind UI users only
+        // require('@tailwindcss/ui'),
+    ],
+    purge: {
+        content: [
+        "./src/**/*.svelte",
+        ],
+        enabled: production // disable purge in dev
+    },
 };
 `
 );
 
-let rollup = fs.readFileSync("rollup.config.js", "utf8");
-rollup = rollup.replace(
-    /(sveltePreprocess\({)/,
-    `$1
+if (isSnowpack) {
+    installPackage(["postcss", "postcss-cli", "tailwindcss", "autoprefixer", "@snowpack/plugin-postcss"], {
+        dev: true,
+    });
+
+    writeCodeFile(
+        "postcss.config.js",
+        `
+            /** @type {import("postcss").ProcessOptions } */
+            module.exports = {
+                plugins: [require("tailwindcss"), require("autoprefixer")],
+            };
+        `
+    );
+
+    addSnowpackPlugins(["@snowpack/plugin-postcss"]);
+} else if (isRollup) {
+    let rollup = fs.readFileSync("rollup.config.js", "utf8");
+    rollup = rollup.replace(
+        /(sveltePreprocess\({)/,
+        `$1
 \t\t\t\tpostcss: {
 \t\t\t\t\tplugins: [
-\t\t\t\t\t\trequire("tailwindcss"), 
+\t\t\t\t\t\trequire("tailwindcss"),
 \t\t\t\t\t\trequire("autoprefixer"),
 \t\t\t\t\t\trequire("postcss-nesting")
 \t\t\t\t\t],
 \t\t\t\t},
 \t\t\t`
-);
-fs.writeFileSync("rollup.config.js", rollup);
+    );
+    fs.writeFileSync("rollup.config.js", rollup);
+}
 
 fs.writeFileSync(
     "src/Tailwind.svelte",
@@ -58,18 +80,29 @@ fs.writeFileSync(
 if (fs.existsSync("src/App.svelte")) {
     let app = fs.readFileSync("src/App.svelte", "utf8");
     app = app.replace(
-        /(<script lang="ts">)/,
+        /(<script lang="(?:typescript|ts)">)/,
         `$1
 \timport Tailwind from "./Tailwind.svelte";
 `
     );
-    app = app.replace(
-        /(<main>)/,
-        `<!-- Embed the tailwind stylesheets -->
-<Tailwind />
 
-$1`
-    );
+    if (isSnowpack) {
+        app = app.replace(
+            /(<\/script>)/,
+            `$1
+
+            <!-- Embed the tailwind stylesheets -->
+            <Tailwind />`
+        );
+    } else {
+        app = app.replace(
+            /(<main>)/,
+            `<!-- Embed the tailwind stylesheets -->
+    <Tailwind />
+
+    $1`
+        );
+    }
     fs.writeFileSync("src/App.svelte", app);
 }
 
