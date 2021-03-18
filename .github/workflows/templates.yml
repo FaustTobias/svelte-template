@@ -427,7 +427,7 @@ jobs:
     template-snowpack-typescript-tailwind:
         name: "Template: snowpack-typescript-tailwind"
         runs-on: ubuntu-latest
-        needs: [template-snowpack-typescript]
+        # needs: [template-snowpack-typescript]
         steps:
             - uses: actions/checkout@v2
               with:
