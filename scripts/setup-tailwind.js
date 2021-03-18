@@ -85,13 +85,24 @@ if (fs.existsSync("src/App.svelte")) {
 \timport Tailwind from "./Tailwind.svelte";
 `
     );
-    app = app.replace(
-        /(<main>)/,
-        `<!-- Embed the tailwind stylesheets -->
-<Tailwind />
 
-$1`
-    );
+    if (isSnowpack) {
+        app = app.replace(
+            /(<\/script>)/,
+            `$1
+
+            <!-- Embed the tailwind stylesheets -->
+            <Tailwind />`
+        );
+    } else {
+        app = app.replace(
+            /(<main>)/,
+            `<!-- Embed the tailwind stylesheets -->
+    <Tailwind />
+
+    $1`
+        );
+    }
     fs.writeFileSync("src/App.svelte", app);
 }
 
