@@ -1,4 +1,6 @@
 <script lang="typescript">
+    import Tailwind from "./Tailwind.svelte";
+
     import { onMount } from "svelte";
     let count: number = 0;
     onMount(() => {
@@ -8,6 +10,9 @@
         };
     });
 </script>
+
+<!-- Embed the tailwind stylesheets -->
+<Tailwind />
 
 <div class="App">
     <header class="App-header">
