@@ -40,7 +40,15 @@ export default {
     },
     plugins: [
         svelte({
-            preprocess: sveltePreprocess({ sourceMap: !production }),
+            preprocess: sveltePreprocess({
+				postcss: {
+					plugins: [
+						require("tailwindcss"),
+						require("autoprefixer"),
+						require("postcss-nesting")
+					],
+				},
+			 sourceMap: !production }),
             compilerOptions: {
                 // enable run-time checks when not in production
                 dev: !production,
