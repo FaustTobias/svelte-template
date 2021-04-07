@@ -1,10 +1,15 @@
 <script lang="ts">
+	import Tailwind from "../Tailwind.svelte";
+
     import Nav from "../components/Nav.svelte";
 
     export let segment: string;
 </script>
 
 <Nav {segment} />
+
+<!-- Embed the tailwind stylesheets -->
+<Tailwind />
 
 <main>
     <slot />

@@ -35,7 +35,15 @@ export default {
                 },
             }),
             svelte({
-                preprocess: sveltePreprocess({ sourceMap: dev }),
+                preprocess: sveltePreprocess({
+				postcss: {
+					plugins: [
+						require("tailwindcss"),
+						require("autoprefixer"),
+						require("postcss-nesting")
+					],
+				},
+			 sourceMap: dev }),
                 compilerOptions: {
                     dev,
                     hydratable: true,
